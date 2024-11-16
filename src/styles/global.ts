@@ -27,9 +27,10 @@ a {
   text-decoration: none;
   font: 700 0.75rem/1.3 "Nunito", sans-serif;
   color: ${props => props.theme['blue']};
-  border-bottom: 0 solid black;
+  border-bottom: 1px solid transparent;
+  text-transform: uppercase;
   
-  transition: all .3s ease; 
+  transition: all .2s ease-in-out; 
   cursor: pointer;
   
   & svg {
@@ -55,5 +56,9 @@ input[type='text'] {
   &::placeholder {
     color: ${props => props.theme['base-label']};
   }
+}
+
+& ul[role='list'] {
+  list-style: none;
 }
 `
