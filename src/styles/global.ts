@@ -51,7 +51,8 @@ input[type='text'] {
   font: 400 1rem/1.6 'Nunito', sans-serif;
   color: ${props => props.theme['base-text']};
 
-  background: ${props => props.theme['base-background']};
+  width: 100%;
+  background-color: ${props => props.theme['base-input']};
 
   &::placeholder {
     color: ${props => props.theme['base-label']};

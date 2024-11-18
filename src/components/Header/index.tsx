@@ -1,9 +1,10 @@
 import background from '../../assets/Cover.png'
+import { HeaderContainer } from './styles'
 
 export function Header() {
   return (
-    <div>
+    <HeaderContainer>
       <img src={background} />
-    </div>
+    </HeaderContainer>
   )
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  padding: 1.25rem 1rem;
+  padding: 2rem;
   
   width: 26rem;
   height: 16.25rem;
@@ -35,16 +35,17 @@ export const CardContainer = styled.div`
 
 export const CardTitle = styled.div`
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   align-items: start;
+  text-align: start;
 
   & h3 {
-    width: 17.25rem;
     font: 700 1.25rem/1.6 'Nunito', sans-serif;
     color: ${props => props.theme['base-title']};
   }
 
   & span {
+    white-space: nowrap;
     font: 400 .825rem/1.6 'Nunito', sans-serif;
     color: ${props => props.theme['base-span']};
   }
