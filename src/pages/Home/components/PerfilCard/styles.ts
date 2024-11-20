@@ -39,9 +39,10 @@ border-radius: 10px;
 export const PerfilInfos = styled.div`
 display: flex;
 flex-direction: column;
-justify-content: space-between;
 
  & p {
+  margin-top: .5rem;
+  padding-bottom: 4rem;
   font: 400 1rem/1.6 'Nunito', sans-serif;
   color: ${props => props.theme['base-text']};
  }
