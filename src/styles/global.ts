@@ -16,31 +16,7 @@ body {
 :focus {
   outline: 0;
   box-shadow: 0 0 0 2px ${props => props.theme['blue']};
-}
-
-a {
-  display: flex;
-  gap: .5rem;
-  align-items: center;
-  max-width: fit-content;
-  
-  text-decoration: none;
-  font: 700 0.75rem/1.3 "Nunito", sans-serif;
-  color: ${props => props.theme['blue']};
-  border-bottom: 1px solid transparent;
-  text-transform: uppercase;
-  
-  transition: all .2s ease-in-out; 
-  cursor: pointer;
-  
-  & svg {
-    fill: ${props => props.theme['blue']};
-    margin-bottom: 4px;
-  }
-  
-  &:hover {
-    border-bottom: 1px solid ${props => props.theme['blue']};
-  }
+  border: none;
 }
 
 input[type='text'] {
@@ -61,5 +37,18 @@ input[type='text'] {
 
 & ul[role='list'] {
   list-style: none;
+}
+
+& a {
+  text-decoration: none;
+  
+  &:active {
+    border-radius: 10px;
+  }
+}
+
+& h1 {
+  text-align: center;
+  color: ${props => props.theme['base-title']};
 }
 `

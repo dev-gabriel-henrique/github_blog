@@ -1,46 +1,66 @@
-import { FetchContainer, HomeContainer, PubContainer } from "./styles";
-import { PerfilCard } from "./components/PerfilCard";
-import { Cards } from "../../components/Cards";
-import { useForm } from "react-hook-form";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
-export function Home() {
-  const { register, watch } = useForm({
-    defaultValues: {
-      search: "",
-    },
-  });
+import { HomeContainer } from "./styles";
 
-  const search = watch("search");
-  const [debouncedSearch, setDebouncedSearch] = useState(search);
+import { Cards } from "../../components/Cards";
+import { PerfilCard } from "./components/PerfilCard";
+
+export interface IUserData {
+  id: number;
+  login: string;
+  avatar_url: string;
+  bio: string;
+  followers: number;
+  html_url: string;
+  company: string;
+  name: string;
+  public_repos: number;
+}
+
+export function Home() {
+
+  // Dados do usuário:
+  const [userData, setUserData] = useState<IUserData | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [hasError, setHasError] = useState<boolean>(false);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearch(search);
-    }, 300);
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.github.com/users/dev-gabriel-henrique`,
+          {
+            headers: {
+              "X-GitHub-Api-Version": "2022-11-28",
+            },
+          }
+        );
 
-    return () => clearTimeout(handler);
-  }, [search]);
+        if (response.data) {
+          setUserData(response.data);
+        } else {
+          setHasError(true);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar os dados do GitHub:", error);
+        setHasError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   return (
     <HomeContainer>
-      <PerfilCard />
-      <FetchContainer>
-        <div>
-          <h3>Publicações</h3>
-          <span></span>
-        </div>
-
-        <input
-          type="text"
-          placeholder="Buscar conteúdo"
-          {...register("search")}
-        />
-      </FetchContainer>
-      )
-      <PubContainer>
-        <Cards searchPost={debouncedSearch} />
-      </PubContainer>
+      <PerfilCard 
+        data={userData!}
+        hasError={hasError}
+        isLoading={isLoading}
+      />
+        <Cards />
     </HomeContainer>
   );
 }

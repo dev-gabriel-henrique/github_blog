@@ -18,6 +18,31 @@ width: 54rem;
 
 border-radius: 10px;
 
+& a {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  max-width: fit-content;
+  
+  text-decoration: none;
+  font: 700 0.75rem/1.3 "Nunito", sans-serif;
+  color: ${props => props.theme['blue']};
+  border-bottom: 1px solid transparent;
+  text-transform: uppercase;
+  
+  transition: all .2s ease-in-out; 
+  cursor: pointer;
+  
+  & svg {
+    fill: ${props => props.theme['blue']};
+    margin-bottom: 4px;
+  }
+  
+  &:hover {
+    border-bottom: 1px solid ${props => props.theme['blue']};
+  }
+}
+
 & > div {
   display: flex;
   gap: 2rem;
